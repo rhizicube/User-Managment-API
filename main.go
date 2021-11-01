@@ -31,7 +31,7 @@ func getUserData(c *gin.Context) {
 func postuserDatas(c *gin.Context) {
 	var newuserData userData
 
-	// Call BindJSON to bind the received JSON to
+	// Call ShouldBindJSON to bind the received JSON to
 	// newData.
 	if err := c.ShouldBindJSON(&newuserData); err != nil {
 		c.JSON(422, gin.H{
@@ -42,7 +42,7 @@ func postuserDatas(c *gin.Context) {
 
 	}
 
-	// Add the new album to the slice.
+	// Add the new user Data to the slice.
 	userDatas = append(userDatas, newuserData)
 	c.IndentedJSON(http.StatusCreated, newuserData)
 	c.JSON(200, gin.H{
@@ -103,6 +103,8 @@ func deleteuserDatas(c *gin.Context) {
 		"message": "invalid user id",
 	})
 }
+
+//Main function code 
 
 func main() {
 	router := gin.Default()
